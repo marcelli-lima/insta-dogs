@@ -21,24 +21,29 @@
   grid-area: 1/1;
 }
 
-.visualizacao {
+.photo .visualizacao {
   background: rgba(0, 0, 0, 0.3);
   color: white;
   font-size: 1rem;
   text-align: center;
   align-items: center;
+  display: flex;
   justify-content: center;
   grid-area: 1/1;
   display: none;
 }
 
-.visualizacao:before {
+.photo:hover .visualizacao {
+  display: flex;
+}
+
+.visualizacao::before {
   width: 16px;
-  height: 16px;
+  height: 10px;
   content: "";
   display: inline-block;
   margin-right: 0.25rem;
-  background: url("../../Assets/visualizacao.svg") no-repeat center center;
+  background: url("../../Assets/visualizacao.svg") no-repeat;
 }
 
 .photo:hover .visualizacao {

@@ -1,35 +1,39 @@
-import React from "react";
-import styles from "./UserPhotoPost.module.css";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { PHOTO_POST } from "../../Hooks/api";
+import useFetch from "../../Hooks/UseFetch";
 import useForm from "../../Hooks/useForm";
-import useFetch from "../../Hooks/useFetch";
-import Input from "../Forms/Input";
 import Button from "../Forms/Button";
+import Input from "../Forms/Input";
 import Error from "../Helper/Error";
-import { PHOTO_POST } from "../../api";
-import { useNavigate } from "react-router-dom";
 import Head from "../Helper/Head";
+import styles from "./UserPhotoPost.module.css";
 
 const UserPhotoPost = () => {
   const nome = useForm();
   const peso = useForm("number");
   const idade = useForm("number");
-  const [img, setImg] = React.useState({});
+  const [img, setImg] = useState({});
   const { data, error, loading, request } = useFetch();
   const navigate = useNavigate();
 
-  React.useEffect(() => {
-    if (data) navigate("/conta");
+  useEffect(() => {
+    if (data) {
+      navigate("/conta");
+      console.log(data);
+    }
   }, [data, navigate]);
 
   function handleSubmit(event) {
     event.preventDefault();
-
     const formData = new FormData();
     formData.append("img", img.raw);
     formData.append("nome", nome.value);
     formData.append("peso", peso.value);
     formData.append("idade", idade.value);
 
+    // Realizando request do token e enviando a foto e informações
+    // Via método PHOTO_POST
     const token = window.localStorage.getItem("token");
     const { url, options } = PHOTO_POST(formData, token);
     request(url, options);
@@ -41,7 +45,6 @@ const UserPhotoPost = () => {
       raw: target.files[0],
     });
   }
-
   return (
     <section className={`${styles.photoPost} animeLeft`}>
       <Head title="Poste sua foto" />

@@ -2,19 +2,19 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
-  gap: 2rem;
+  gap: 1rem;
 }
 
-.login:before {
-  content: "";
+.login::before {
   display: block;
+  content: "";
   background: url("../../Assets/login.jpg") no-repeat center center;
   background-size: cover;
 }
 
 .forms {
   max-width: 30rem;
-  padding: 1rem;
+  padding: 2rem;
   margin-top: 20vh;
 }
 
@@ -22,11 +22,9 @@
   .login {
     grid-template-columns: 1fr;
   }
-
-  .login:before {
+  .login::before {
     display: none;
   }
-
   .forms {
     max-width: 100%;
   }

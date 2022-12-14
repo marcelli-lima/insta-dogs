@@ -15,11 +15,10 @@
   font-size: 1rem;
   font-family: var(--type-first);
   resize: none;
-  border: 1px;
   border: 1px solid #eee;
   padding: 0.5rem;
   border-radius: 0.2rem;
-  background-color: #eee;
+  background: #eee;
   transition: 0.2s;
 }
 
@@ -35,10 +34,11 @@
   border: none;
   cursor: pointer;
   color: #333;
-  background: transparent;
+  background-color: transparent;
   font-size: 1rem;
   padding: 0 1rem;
   overflow: hidden;
+  margin-top: 1rem;
 }
 
 .button:focus,

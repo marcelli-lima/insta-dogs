@@ -1,20 +1,20 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 import { ReactComponent as MinhasFotos } from "../../Assets/feed.svg";
 import { ReactComponent as Estatisticas } from "../../Assets/estatisticas.svg";
-import { ReactComponent as AdicionarFoto } from "../../Assets/adicionar.svg";
+import { ReactComponent as Adicionar } from "../../Assets/adicionar.svg";
 import { ReactComponent as Sair } from "../../Assets/sair.svg";
 import styles from "./UserHeaderNav.module.css";
 import useMedia from "../../Hooks/useMedia";
 
 const UserHeaderNav = () => {
-  const { userLogout } = React.useContext(UserContext);
-  const [mobileMenu, setMobileMenu] = React.useState(false);
+  const { userLogout } = useContext(UserContext);
   const mobile = useMedia("(max-width: 40rem");
-
+  const [mobileMenu, setMobileMenu] = useState(false);
   const { pathname } = useLocation();
-  React.useEffect(() => {
+
+  useEffect(() => {
     setMobileMenu(false);
   }, [pathname]);
 
@@ -22,34 +22,43 @@ const UserHeaderNav = () => {
     <>
       {mobile && (
         <button
-          aria-label="Menu"
+          arial-label="Menu"
+          onClick={() => setMobileMenu(!mobileMenu)}
           className={`${styles.mobileButton} ${
             mobileMenu && styles.mobileButtonActive
           }`}
-          onClick={() => setMobileMenu(!mobileMenu)}
         ></button>
       )}
+
       <nav
         className={`${mobile ? styles.navMobile : styles.nav} ${
           mobileMenu && styles.navMobileActive
         }`}
       >
-        <NavLink to="/conta" end activeClassName={styles.active}>
-          <MinhasFotos />
-          {mobile && "Minhas Fotos"}
+        <NavLink
+          to="/conta"
+          end
+          className={({ isActive }) => (isActive ? styles.active : "")}
+        >
+          <MinhasFotos /> {mobile && "Minhas fotos"}
         </NavLink>
-        <NavLink to="/conta/estatisticas" activeClassName={styles.active}>
-          <Estatisticas />
-          {mobile && "Estatísticas"}
+        <NavLink
+          to="/conta/estatisticas"
+          className={({ isActive }) => (isActive ? styles.active : "")}
+        >
+          {" "}
+          <Estatisticas /> {mobile && "Estatísticas"}
         </NavLink>
-        <NavLink to="/conta/postar" activeClassName={styles.active}>
-          <AdicionarFoto />
-          {mobile && "Adicionar Foto"}
+        <NavLink
+          to="/conta/postar"
+          className={({ isActive }) => (isActive ? styles.active : "")}
+        >
+          {" "}
+          <Adicionar />
+          {mobile && "Adicionar foto"}
         </NavLink>
         <button onClick={userLogout}>
-          {" "}
-          <Sair />
-          {mobile && "Sair"}
+          <Sair /> {mobile && "Sair"}
         </button>
       </nav>
     </>

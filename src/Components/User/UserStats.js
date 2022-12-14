@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "../Helper/Head";
-import useFetch from "../../Hooks/useFetch";
-import { STATS_GET } from "../../api";
+import useFetch from "../../Hooks/UseFetch";
+import { STATS_GET } from "../../Hooks/api";
 import Loading from "../Helper/Loading";
 import Error from "../Helper/Error";
 const UserStatsGraphs = React.lazy(() => import("./UserStatsGraphs"));
@@ -11,8 +11,7 @@ const UserStats = () => {
 
   React.useEffect(() => {
     async function getData() {
-      const token = window.localStorage.getItem("token");
-      const { url, options } = STATS_GET(token);
+      const { url, options } = STATS_GET();
       await request(url, options);
     }
     getData();

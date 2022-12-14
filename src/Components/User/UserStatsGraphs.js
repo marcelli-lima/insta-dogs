@@ -14,16 +14,20 @@ const UserStatsGraphs = ({ data }) => {
       };
     });
 
-    setTotal(
-      data.map(({ acessos }) => Number(acessos)).reduce((a, b) => a + b)
-    );
-    setGraph(graphData);
+    if (data.length > 0) {
+      setTotal(
+        data.map(({ acessos }) => Number(acessos)).reduce((a, b) => a + b)
+      );
+      setGraph(graphData);
+    }
+
+    console.log(data.length);
   }, [data]);
 
   return (
     <section className={`${styles.graph} animeLeft`}>
       <div className={`${styles.total} ${styles.graphItem}`}>
-        <p>Acessos: {total}</p>
+        <p>Acessos : {total}</p>
       </div>
       <div className={styles.graphItem}>
         <VictoryPie

@@ -19,7 +19,7 @@
 
 @keyframes scaleUp {
   to {
-    opacity: initial;
+    opacity: 1;
     transform: initial;
   }
 }
@@ -29,7 +29,7 @@
 }
 
 .single .details {
-  padding: 1px 0px 0px 0px;
+  padding: 1rem 0px 0px 0px;
 }
 
 .img {
@@ -42,16 +42,21 @@
   overflow: hidden;
 }
 
+.comments {
+  padding: 0 2rem;
+}
+
 @media (max-width: 64rem) {
   .photo {
     height: auto;
-    max-height: calc(100vh - 4rem);
-    overflow-y: auto;
+    max-height: calc(100vh-4rem);
+    overflow-y: scroll;
     grid-template-columns: minmax(20rem, 40rem);
   }
 
   .img {
-    grid-row: 1;
+    grid-row: 1/2;
+    width: 100%;
   }
 }
 
@@ -67,13 +72,13 @@
   text-decoration: underline;
 }
 
-.visualicacoes:before {
+.visualizacoes::before {
   content: "";
   display: inline-block;
   width: 16px;
   height: 10px;
   margin-right: 0.5rem;
-  background: url("../../Assets/visualizacao-black.svg");
+  background: url("../../Assets//visualizacao-black.svg");
 }
 
 .attributes {

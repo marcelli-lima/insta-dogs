@@ -1,23 +1,21 @@
-import React from "react";
-import styles from "./FeedModal.module.css";
-import useFetch from "../../Hooks/useFetch";
+import React, { useEffect } from "react";
+import { PHOTO_GET } from "../../Hooks/api";
+import useFetch from "../../Hooks/UseFetch";
 import Error from "../Helper/Error";
 import Loading from "../Helper/Loading";
-import { PHOTO_GET } from "../../api";
 import PhotoContent from "../Photo/PhotoContent";
+import styles from "./FeedModal.module.css";
 
 const FeedModal = ({ photo, setModalPhoto }) => {
   const { data, error, loading, request } = useFetch();
 
-  React.useEffect(() => {
+  useEffect(() => {
     const { url, options } = PHOTO_GET(photo.id);
     request(url, options);
   }, [photo, request]);
 
   function handleOutsideClick(event) {
-    if (event.target === event.currentTarget) {
-      setModalPhoto(null);
-    }
+    if (event.target === event.currentTarget) setModalPhoto(null);
   }
 
   return (

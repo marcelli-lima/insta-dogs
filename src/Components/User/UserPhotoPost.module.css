@@ -11,7 +11,7 @@
   }
 }
 
-.file {
+.photoPost #img {
   margin-bottom: 1rem;
 }
 
@@ -21,9 +21,13 @@
   background-position: center center;
 }
 
+.file {
+  margin-bottom: 1rem;
+}
+
 .preview::after {
   content: "";
   display: block;
   height: 0px;
-  padding: 100%;
+  padding-bottom: 100%;
 }

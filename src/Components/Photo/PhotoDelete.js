@@ -1,19 +1,16 @@
 import React from "react";
-import { PHOTO_DELETE } from "../../api";
+import { PHOTO_DELETE } from "../../Hooks/api";
+import useFetch from "../../Hooks/UseFetch";
 import styles from "./PhotoDelete.module.css";
-import useFetch from "../../Hooks/useFetch";
 
-const PhotoDelete = ({ id }) => {
+function PhotoDelete({ id }) {
   const { loading, request } = useFetch();
 
   async function handleClick() {
-    const confirm = window.confirm("Tem centeza que deseja deletar essa foto?");
-
+    const confirm = window.confirm("Tem certeza que deseja deletar?");
     if (confirm) {
-      const token = window.localStorage.getItem("token");
-      const { url, options } = PHOTO_DELETE(id, token);
+      const { url, options } = PHOTO_DELETE(id);
       const { response } = await request(url, options);
-
       if (response.ok) window.location.reload();
     }
   }
@@ -25,12 +22,12 @@ const PhotoDelete = ({ id }) => {
           Deletar
         </button>
       ) : (
-        <button className={styles.delete} onClick={handleClick}>
+        <button onClick={handleClick} className={styles.delete}>
           Deletar
         </button>
       )}
     </>
   );
-};
+}
 
 export default PhotoDelete;
